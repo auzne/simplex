@@ -1,0 +1,10 @@
+# IDE folders and files
+/.idea/
+/cmake-build-debug/
+CMakeLists.txt
+
+# Other files
+compile.sh
+to-do
+simplex
+
