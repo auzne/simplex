@@ -63,7 +63,7 @@ void printBasics(std::vector<std::vector<double>> &table, std::vector<std::vecto
         char column_name;
         int column_number;
         int basic_variable_column{basics.at(i).at(1)};
-        if (basic_variable_column > 0 && basic_variable_column < (1+total_x)) {
+        if (basic_variable_column > 0 && basic_variable_column < (1 + total_x)) {
             column_name = 'x';
             column_number = basic_variable_column;
         } else {
@@ -85,7 +85,7 @@ void printNonBasics(std::vector<std::vector<int>> non_basics, int total_x) {
         char column_name;
         int column_number;
         int basic_variable_column{non_basics.at(i).at(1)};
-        if (basic_variable_column > 0 && basic_variable_column < (1+total_x)) {
+        if (basic_variable_column > 0 && basic_variable_column < (1 + total_x)) {
             column_name = 'x';
             column_number = basic_variable_column;
         } else {

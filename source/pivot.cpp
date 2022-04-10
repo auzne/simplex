@@ -3,7 +3,7 @@
 #include <vector>
 
 std::vector<int> findPivot(std::vector<std::vector<double>> &table, int total_x, int forced_pivot_column) {
-    int pivot_column{ forced_pivot_column };
+    int pivot_column{forced_pivot_column};
     if (forced_pivot_column == -1)
         pivot_column = findPivotColumn(table.at(0), total_x);
     int pivot_row{findPivotRow(table, pivot_column)};

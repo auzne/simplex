@@ -66,7 +66,7 @@ void updateRowsWithNPR(std::vector<std::vector<double>> &table, int pivot_row_in
 
 void printTable(std::vector<std::vector<double>> &table, int total_x, int total_constr) {
     // z column
-    std::cout << "\n\tz";
+    std::cout << "\tz";
     // x column
     for (int i{0}; i < total_x; ++i)
         std::cout << "\tx" << (i + 1);

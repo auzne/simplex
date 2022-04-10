@@ -1,6 +1,6 @@
+#include "constraints.h"
 #include "npr.h"
 #include "pivot.h"
-#include "questions.h"
 #include "table.h"
 #include "solution.h"
 #include "z.h"
@@ -25,6 +25,10 @@ int main() {
     std::vector<std::vector<double>> table{{zToRow(z_vector, total_constr)}};
     // add rows to the table
     addRows(table, total_x, total_constr, max_or_min);
+
+    // print z and the constraints
+    printZ(z_vector, max_or_min);
+    printConstraints(table, total_x, max_or_min);
 
     // only used after first while
     int forced_pivot_column{-1};
