@@ -5,7 +5,7 @@
 
 int getNumberOfConstraints();
 
-void printConstraints(std::vector<std::vector<double>> &table, int total_x, int max_or_min);
+void printConstraints(std::vector<std::vector<double>> &table, std::vector<int> max_or_min, int total_x);
 
 void printConstr(std::vector<double> &constr, int total_x, int max_or_min);
 

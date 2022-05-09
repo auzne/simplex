@@ -2,8 +2,9 @@
 
 simplex method made using c++
 
-## Compile
-`$ g++ -std=c++17 -o simplex -g ./source/*.cpp -I./source/include`
+## Compiling and running
+```bash
+$ g++ -std=c++17 -o simplex -g ./source/*.cpp -I./source/include
+$ ./simplex
+```
 
-## Run
-`$ ./simplex`

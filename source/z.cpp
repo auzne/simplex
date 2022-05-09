@@ -32,19 +32,6 @@ double getXValueZ(int total_x) {
     return x;
 }
 
-int maximizeOrMinimize() {
-    std::cout << "Selecione o que deseja fazer com a função z" << '\n'
-              << "1) Maximizar" << '\n'
-              << "2) Minimizar" << '\n'
-              << "Digite um número: ";
-    int max_or_min{};
-    std::cin >> max_or_min;
-
-    if (max_or_min == 1 || max_or_min == 2)
-        return max_or_min;
-    return maximizeOrMinimize();
-}
-
 bool hasOnlyNegatives(std::vector<double> &z_vector) {
     for (int i{0}; i < z_vector.size(); ++i) {
         if (z_vector.at(i) > 0.0)
@@ -62,7 +49,7 @@ std::vector<double> zToRow(std::vector<double> &z_vector, int total_constr) {
         row.push_back(t);
     }
     // fn column
-    for (int i{0}; i < total_constr; i++)
+    for (int i{0}; i < total_constr; ++i)
         row.push_back(0.0);
     // b column
     row.push_back(0.0);
@@ -71,7 +58,7 @@ std::vector<double> zToRow(std::vector<double> &z_vector, int total_constr) {
 }
 
 void zPerfectSolution(std::vector<double> &z_vector) {
-    std::cout << '\n' << "z possui somente valores x negativos";
+    std::cout << '\n' << "z possui somente valores x negativos" << '\n';
     printZ(z_vector, -1);
 }
 

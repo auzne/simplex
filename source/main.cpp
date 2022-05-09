@@ -1,8 +1,9 @@
 #include "constraints.h"
 #include "npr.h"
 #include "pivot.h"
-#include "table.h"
 #include "solution.h"
+#include "table.h"
+#include "utils.h"
 #include "z.h"
 #include <vector>
 
@@ -17,18 +18,21 @@ int main() {
     }
     // number of x's
     int total_x{static_cast<int>(z_vector.size())};
-    // maximize or minimize z function
-    int max_or_min{maximizeOrMinimize()};
+    // stores info about "maximize or minimize" for each row
+    std::vector<int> max_or_min{maximizeOrMinimize('z', -1)};
     // number of constraints
     int total_constr{getNumberOfConstraints()};
     // create table vector, where all rows will be
     std::vector<std::vector<double>> table{{zToRow(z_vector, total_constr)}};
     // add rows to the table
-    addRows(table, total_x, total_constr, max_or_min);
+    addRows(table, max_or_min, total_x, total_constr);
 
     // print z and the constraints
-    printZ(z_vector, max_or_min);
-    printConstraints(table, total_x, max_or_min);
+    printZ(z_vector, max_or_min.at(0));
+    printConstraints(table, max_or_min, total_x);
+
+    // multiply rows with max_or_min == 2 by -1
+    maximizeAllRows(table, max_or_min);
 
     // only used after first while
     int forced_pivot_column{-1};
@@ -36,6 +40,9 @@ int main() {
     while (!perfect_solution) {
         // find pivot (row, column)
         std::vector<int> pivot_index{findPivot(table, total_x, forced_pivot_column)};
+        // pivot not found (all b/value results are either zero or negative - invalid)
+        if (pivot_index.at(0) == -1)
+            break;
         // find new pivot row and replace in the table
         table.at(pivot_index.at(0)) = findNewPivotRow(table.at(pivot_index.at(0)), pivot_index.at(1));
         // update table with new rows calculated using npr
@@ -52,7 +59,7 @@ int main() {
     // print table
     printTable(table, total_x, total_constr);
     // print solution (basic and non-basic variables and z value)
-    printSolution(table, total_x);
+    printSolution(table, total_x, perfect_solution);
 
     return 0;
 }

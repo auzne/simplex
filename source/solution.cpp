@@ -1,11 +1,12 @@
 #include "solution.h"
+#include "utils.h"
 #include <iostream>
 #include <vector>
 
 int isPerfectSolution(std::vector<double> &first_row) {
     // return first negative number occurrence
     // -1 is a perfect solution
-    for (int i{0}; i < first_row.size(); ++i) {
+    for (int i{1}; i < (first_row.size() - 1); ++i) {
         if (first_row.at(i) < 0.0)
             return i;
     }
@@ -17,10 +18,10 @@ std::vector<int> isBasicVariable(std::vector<double> &column, int column_index) 
     int ones{0};
     int one_index{-1};
     for (int i{0}; i < column.size(); ++i) {
-        if (column.at(i) == 1.0) {
+        if (approximatelyEqualAbsRel(column.at(i), 1.0, 1e-8, 1e-4)) {
             ++ones;
             one_index = i;
-        } else if (column.at(i) == 0.0)
+        } else if (approximatelyEqualAbsRel(column.at(i), 0.0, 1e-8, 1e-4))
             continue;
         else
             // when value differs from 0 and 1
@@ -39,7 +40,7 @@ std::vector<double> columnToRow(std::vector<std::vector<double>> &table, int col
     return column;
 }
 
-void printSolution(std::vector<std::vector<double>> &table, int total_x) {
+void printSolution(std::vector<std::vector<double>> &table, int total_x, bool perfect_solution) {
     std::vector<std::vector<int>> basics{};
     std::vector<std::vector<int>> non_basics{};
     // B column can not be a basic variable
@@ -51,7 +52,13 @@ void printSolution(std::vector<std::vector<double>> &table, int total_x) {
         else
             non_basics.push_back(variable);
     }
-    std::cout << '\n' << "Solução ótima" << '\n';
+    std::cout << '\n' << "Solução";
+    if (perfect_solution)
+        std::cout << " ótima";
+    else
+        std::cout << " não ótima";
+    std::cout << '\n';
+
     printBasics(table, basics, total_x);
     printNonBasics(non_basics, total_x);
     std::cout << "Valor de z: " << table.at(0).at(table.at(0).size() - 1) << '\n';

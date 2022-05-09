@@ -10,12 +10,13 @@ int getNumberOfConstraints() {
 
     if (total < 1)
         return getNumberOfConstraints();
+    std::cout << '\n';
     return total;
 }
 
-void printConstraints(std::vector<std::vector<double>> &table, int total_x, int max_or_min) {
+void printConstraints(std::vector<std::vector<double>> &table, std::vector<int> max_or_min, int total_x) {
     for (int i{1}; i < table.size(); ++i) {
-        printConstr(table.at(i), total_x, max_or_min);
+        printConstr(table.at(i), total_x, max_or_min.at(i));
     }
     printLastConstr(total_x);
     std::cout << '\n';

@@ -9,7 +9,7 @@ std::vector<int> isBasicVariable(std::vector<double> &column, int column_index);
 
 std::vector<double> columnToRow(std::vector<std::vector<double>> &table, int column_index);
 
-void printSolution(std::vector<std::vector<double>> &table, int total_x);
+void printSolution(std::vector<std::vector<double>> &table, int total_x, bool perfect_solution);
 
 void printBasics(std::vector<std::vector<double>> &table, std::vector<std::vector<int>> basics, int total_x);
 

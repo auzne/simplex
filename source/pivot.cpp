@@ -28,14 +28,14 @@ int findPivotColumn(std::vector<double> &first_row, int total_x) {
 }
 
 int findPivotRow(std::vector<std::vector<double>> &table, int column_index) {
-    double smaller_value{0};
-    int smaller_index{0};
+    double smaller_value{0.0};
+    int smaller_index{-1};
     for (int i{1}; i < table.size(); ++i) {
         double value{table.at(i).at(column_index)};
         double b{table.at(i).at(table.at(0).size() - 1)};
         if (value > 0.0 || value < 0.0) {
             double division{b / value};
-            if (division < smaller_value || smaller_value == 0.0) {
+            if ((division < smaller_value || smaller_value == 0.0) && division > 0.0) {
                 smaller_value = division;
                 smaller_index = i;
             }

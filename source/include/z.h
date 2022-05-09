@@ -7,8 +7,6 @@ std::vector<double> getZ();
 
 double getXValueZ(int total_x);
 
-int maximizeOrMinimize();
-
 bool hasOnlyNegatives(std::vector<double> &z_vector);
 
 std::vector<double> zToRow(std::vector<double> &z_vector, int total_constr);
