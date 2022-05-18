@@ -7,4 +7,3 @@ simplex method made using c++
 $ g++ -std=c++17 -o simplex -g ./source/*.cpp -I./source/include
 $ ./simplex
 ```
-

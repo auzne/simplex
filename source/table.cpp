@@ -18,12 +18,12 @@ std::vector<double> getRow(std::vector<int> &max_or_min, int total_x, int total_
     int row_max_or_min;
 
     // x input
-    for (int i{0}; i < total_x; ++i)
-        row.push_back(getXValue(current_row, (i + 1)));
+    for (int i{1}; i <= total_x; ++i)
+        row.push_back(getXValue(current_row, i));
     // b input
     b_value = getBValue(current_row);
     // maximize or minimize this row
-    row_max_or_min = maximizeOrMinimize(static_cast<char>(current_row), max_or_min.at(0));
+    row_max_or_min = maximizeOrMinimize(current_row, max_or_min.at(0));
     // push to max or min array
     max_or_min.push_back(row_max_or_min);
     // f
@@ -45,7 +45,7 @@ double getXValue(int current_row, int current_x) {
 }
 
 double getFValue(int current_f, int current_row, int max_or_min) {
-    double f {0.0};
+    double f{0.0};
 
     if (current_f == (current_row - 2)) {
         if (max_or_min == 1)
@@ -69,15 +69,12 @@ void maximizeAllRows(std::vector<std::vector<double>> &table, std::vector<int> &
     for (int i{1}; i < max_or_min.size(); ++i) {
         if (max_or_min.at(i) == 2) {
             table.at(i) = multiplyByMinusOne(table.at(i));
-            max_or_min.at(i) = 1;
         }
     }
 }
 
 std::vector<double> multiplyByMinusOne(std::vector<double> &row) {
     std::vector<double> multiplied_row{row.at(0)};
-    // might need to change to `i < row.size() - 1`
-    // need to check later
     for (int i{1}; i < row.size(); ++i) {
         if (approximatelyEqualAbsRel(row.at(i), 0.0, 1e-8, 1e-4))
             multiplied_row.push_back(row.at(i));

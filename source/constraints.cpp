@@ -36,14 +36,16 @@ void printConstr(std::vector<double> &constr, int total_x, int max_or_min) {
                 if (i > 0)
                     std::cout << ' ';
             }
-            std::cout << std::fabs(xn) << 'x' << i;
+            std::cout << std::abs(xn) << 'x' << i;
         }
     }
     // maximize or minimize operator
     if (max_or_min == 1)
         std::cout << " <= ";
-    else
+    else if (max_or_min == 2)
         std::cout << " >= ";
+    else
+        std::cout << " = ";
     // result (b column)
     std::cout << constr.at(constr.size() - 1);
     std::cout << '\n';

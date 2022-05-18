@@ -3,6 +3,10 @@
 
 bool approximatelyEqualAbsRel(double a, double b, double absEpsilon, double relEpsilon);
 
-int maximizeOrMinimize(char row, int z_max_or_min);
+int maximizeOrMinimize(int row, int z_max_or_min);
+
+int continueLooping(int loop_count);
+
+void clearTerminal();
 
 #endif //SIMPLEX_UTILS_H

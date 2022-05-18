@@ -40,7 +40,7 @@ std::vector<double> columnToRow(std::vector<std::vector<double>> &table, int col
     return column;
 }
 
-void printSolution(std::vector<std::vector<double>> &table, int total_x, bool perfect_solution) {
+void printSolution(std::vector<std::vector<double>> &table, int total_x, bool perfect_solution, int loop_count) {
     std::vector<std::vector<int>> basics{};
     std::vector<std::vector<int>> non_basics{};
     // B column can not be a basic variable
@@ -53,11 +53,9 @@ void printSolution(std::vector<std::vector<double>> &table, int total_x, bool pe
             non_basics.push_back(variable);
     }
     std::cout << '\n' << "Solução";
-    if (perfect_solution)
-        std::cout << " ótima";
-    else
-        std::cout << " não ótima";
-    std::cout << '\n';
+    if (!perfect_solution)
+        std::cout << " não";
+    std::cout << " ótima (em " << loop_count << " iterações)" << '\n';
 
     printBasics(table, basics, total_x);
     printNonBasics(non_basics, total_x);

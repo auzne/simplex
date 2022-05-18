@@ -19,8 +19,8 @@ int findPivotColumn(std::vector<double> &first_row, int total_x) {
     int greater_index{1};
     // look for greater numbers
     for (int i{1}; i <= total_x; ++i) {
-        if (std::fabs(first_row.at(i)) > greater_abs) {
-            greater_abs = std::fabs(first_row.at(i));
+        if (std::abs(first_row.at(i)) > greater_abs) {
+            greater_abs = std::abs(first_row.at(i));
             greater_index = i;
         }
     }

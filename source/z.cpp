@@ -32,6 +32,14 @@ double getXValueZ(int total_x) {
     return x;
 }
 
+bool hasOnlyPositives(std::vector<double> &z_vector) {
+    for (int i{0}; i < z_vector.size(); ++i) {
+        if (z_vector.at(i) < 0.0)
+            return false;
+    }
+    return true;
+}
+
 bool hasOnlyNegatives(std::vector<double> &z_vector) {
     for (int i{0}; i < z_vector.size(); ++i) {
         if (z_vector.at(i) > 0.0)
@@ -40,13 +48,17 @@ bool hasOnlyNegatives(std::vector<double> &z_vector) {
     return true;
 }
 
-std::vector<double> zToRow(std::vector<double> &z_vector, int total_constr) {
+std::vector<double> zToRow(std::vector<double> &z_vector, int total_constr, int max_or_min) {
     // z have first value 1 (column z)
     std::vector<double> row{1};
     // xn column
     for (int i{0}; i < z_vector.size(); ++i) {
-        double t{z_vector.at(i) * -1};
-        row.push_back(t);
+        if (max_or_min == 1)
+            // maximize multiply by -1 once
+            row.push_back(z_vector.at(i) * -1.0);
+        else
+            // minimize multiply twice by -1, and -1^2 = 1
+            row.push_back(z_vector.at(i));
     }
     // fn column
     for (int i{0}; i < total_constr; ++i)
@@ -57,13 +69,16 @@ std::vector<double> zToRow(std::vector<double> &z_vector, int total_constr) {
     return row;
 }
 
-void zPerfectSolution(std::vector<double> &z_vector) {
-    std::cout << '\n' << "z possui somente valores x negativos" << '\n';
+void zPerfectSolution(std::vector<double> &z_vector, bool is_minimize) {
+    if (!is_minimize)
+        std::cout << '\n' << "z possui somente valores x negativos" << '\n';
+    else
+        std::cout << '\n' << "Não é possível minimizar quando todos os valores x são positivos na fórmula atual"
+                  << '\n';
     printZ(z_vector, -1);
 }
 
 void printZ(std::vector<double> &z_vector, int max_or_min) {
-    std::cout << '\n';
     if (max_or_min == 1)
         std::cout << "(max) ";
     else if (max_or_min == 2)
@@ -79,7 +94,7 @@ void printZ(std::vector<double> &z_vector, int max_or_min) {
             if (i > 0)
                 std::cout << ' ';
         }
-        std::cout << std::fabs(xn) << 'x' << (i + 1);
+        std::cout << std::abs(xn) << 'x' << (i + 1);
     }
     std::cout << '\n';
 }
