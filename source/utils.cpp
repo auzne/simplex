@@ -1,6 +1,6 @@
 #include "utils.h"
 #include <algorithm>
-#include <cmath>
+#include <cstdlib>
 #include <iostream>
 
 // https://www.learncpp.com/cpp-tutorial/relational-operators-and-floating-point-comparisons/
@@ -66,8 +66,8 @@ int continueLooping(int loop_count) {
 
 void clearTerminal() {
 #ifdef _WIN32
-    system("cls");
+    std::system("cls");
 #else
-    system("clear");
+    std::system("clear");
 #endif
 }

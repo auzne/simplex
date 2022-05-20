@@ -5,7 +5,6 @@
 #include "table.h"
 #include "utils.h"
 #include "z.h"
-#include <cstdlib>
 #include <vector>
 
 int main() {
