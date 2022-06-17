@@ -3,7 +3,7 @@
 #include <iostream>
 #include <vector>
 
-int isPerfectSolution(std::vector<double> &first_row) {
+int isPerfectSolution(const std::vector<double> &first_row) {
     // return first negative number occurrence
     // -1 is a perfect solution
     for (int i{1}; i < (first_row.size() - 1); ++i) {
@@ -13,7 +13,7 @@ int isPerfectSolution(std::vector<double> &first_row) {
     return -1;
 }
 
-std::vector<int> isBasicVariable(std::vector<double> &column, int column_index) {
+std::vector<int> isBasicVariable(const std::vector<double> &column, int column_index) {
     // a basic variable consists of only a single 1 and 0s
     int ones{0};
     int one_index{-1};
@@ -32,7 +32,7 @@ std::vector<int> isBasicVariable(std::vector<double> &column, int column_index) 
     return {-1, column_index};
 }
 
-std::vector<double> columnToRow(std::vector<std::vector<double>> &table, int column_index) {
+std::vector<double> columnToRow(const std::vector<std::vector<double>> &table, int column_index) {
     std::vector<double> column{};
     for (int i{0}; i < table.size(); ++i)
         column.push_back(table.at(i).at(column_index));
@@ -40,7 +40,7 @@ std::vector<double> columnToRow(std::vector<std::vector<double>> &table, int col
     return column;
 }
 
-void printSolution(std::vector<std::vector<double>> &table, int total_x, bool perfect_solution, int loop_count) {
+void printSolution(const std::vector<std::vector<double>> &table, int total_x, bool perfect_solution, int loop_count) {
     std::vector<std::vector<int>> basics{};
     std::vector<std::vector<int>> non_basics{};
     // B column can not be a basic variable
@@ -62,7 +62,7 @@ void printSolution(std::vector<std::vector<double>> &table, int total_x, bool pe
     std::cout << "Valor de z: " << table.at(0).at(table.at(0).size() - 1) << '\n';
 }
 
-void printBasics(std::vector<std::vector<double>> &table, std::vector<std::vector<int>> basics, int total_x) {
+void printBasics(const std::vector<std::vector<double>> &table, const std::vector<std::vector<int>> &basics, int total_x) {
     std::cout << "Variáveis básicas:";
     for (int i{0}; i < basics.size(); ++i) {
         char column_name;
@@ -84,7 +84,7 @@ void printBasics(std::vector<std::vector<double>> &table, std::vector<std::vecto
     std::cout << '\n';
 }
 
-void printNonBasics(std::vector<std::vector<int>> non_basics, int total_x) {
+void printNonBasics(const std::vector<std::vector<int>> &non_basics, int total_x) {
     std::cout << "Variáveis não básicas:";
     for (int i{0}; i < non_basics.size(); ++i) {
         char column_name;

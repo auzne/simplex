@@ -2,7 +2,7 @@
 #include <cmath>
 #include <vector>
 
-std::vector<int> findPivot(std::vector<std::vector<double>> &table, int total_x, int forced_pivot_column) {
+std::vector<int> findPivot(const  std::vector<std::vector<double>> &table, int total_x, int forced_pivot_column) {
     int pivot_column{forced_pivot_column};
     if (forced_pivot_column == -1)
         pivot_column = findPivotColumn(table.at(0), total_x);
@@ -13,7 +13,7 @@ std::vector<int> findPivot(std::vector<std::vector<double>> &table, int total_x,
     return pivot;
 }
 
-int findPivotColumn(std::vector<double> &first_row, int total_x) {
+int findPivotColumn(const std::vector<double> &first_row, int total_x) {
     // greater number and it's index in the vector
     double greater_abs{0};
     int greater_index{1};
@@ -27,7 +27,7 @@ int findPivotColumn(std::vector<double> &first_row, int total_x) {
     return greater_index;
 }
 
-int findPivotRow(std::vector<std::vector<double>> &table, int column_index) {
+int findPivotRow(const std::vector<std::vector<double>> &table, int column_index) {
     double smaller_value{0.0};
     int smaller_index{-1};
     for (int i{1}; i < table.size(); ++i) {

@@ -73,7 +73,7 @@ void maximizeAllRows(std::vector<std::vector<double>> &table, std::vector<int> &
     }
 }
 
-std::vector<double> multiplyByMinusOne(std::vector<double> &row) {
+std::vector<double> multiplyByMinusOne(const std::vector<double> &row) {
     std::vector<double> multiplied_row{row.at(0)};
     for (int i{1}; i < row.size(); ++i) {
         if (approximatelyEqualAbsRel(row.at(i), 0.0, 1e-8, 1e-4))
@@ -92,7 +92,7 @@ void updateRowsWithNPR(std::vector<std::vector<double>> &table, int pivot_row_in
     }
 }
 
-void printTable(std::vector<std::vector<double>> &table, int total_x, int total_constr) {
+void printTable(const std::vector<std::vector<double>> &table, int total_x, int total_constr) {
     // z column
     std::cout << "\tz";
     // x column

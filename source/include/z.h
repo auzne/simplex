@@ -7,14 +7,14 @@ std::vector<double> getZ();
 
 double getXValueZ(int total_x);
 
-bool hasOnlyPositives(std::vector<double> &z_vector);
+bool hasOnlyPositives(const std::vector<double> &z_vector);
 
-bool hasOnlyNegatives(std::vector<double> &z_vector);
+bool hasOnlyNegatives(const std::vector<double> &z_vector);
 
-std::vector<double> zToRow(std::vector<double> &z_vector, int total_constr, int max_or_min);
+std::vector<double> zToRow(const std::vector<double> &z_vector, int total_constr, int max_or_min);
 
-void zPerfectSolution(std::vector<double> &z_vector, bool is_minimize);
+void zPerfectSolution(const std::vector<double> &z_vector, bool is_minimize);
 
-void printZ(std::vector<double> &z_vector, int max_or_min);
+void printZ(const std::vector<double> &z_vector, int max_or_min);
 
 #endif //SIMPLEX_Z_H

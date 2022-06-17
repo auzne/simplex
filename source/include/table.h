@@ -15,10 +15,10 @@ double getBValue(int current_row);
 
 void maximizeAllRows(std::vector<std::vector<double>> &table, std::vector<int> &max_or_min);
 
-std::vector<double> multiplyByMinusOne(std::vector<double> &row);
+std::vector<double> multiplyByMinusOne(const std::vector<double> &row);
 
 void updateRowsWithNPR(std::vector<std::vector<double>> &table, int pivot_row_index, int pivot_column_index);
 
-void printTable(std::vector<std::vector<double>> &table, int total_x, int total_constr);
+void printTable(const std::vector<std::vector<double>> &table, int total_x, int total_constr);
 
 #endif //SIMPLEX_TABLE_H

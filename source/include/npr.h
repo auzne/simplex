@@ -3,10 +3,10 @@
 
 #include <vector>
 
-std::vector<double> findNewPivotRow(std::vector<double> &pivot_row, int pivot_column_index);
+std::vector<double> findNewPivotRow(const std::vector<double> &pivot_row, int pivot_column_index);
 
-std::vector<double> findNewRow(std::vector<double> &row, std::vector<double> &npr, int pivot_column_index);
+std::vector<double> findNewRow(const std::vector<double> &row, const std::vector<double> &npr, int pivot_column_index);
 
-std::vector<double> multiplyNPR(std::vector<double> &npr, double pivot_column);
+std::vector<double> multiplyNPR(const std::vector<double> &npr, double pivot_column);
 
 #endif //SIMPLEX_NPR_H
